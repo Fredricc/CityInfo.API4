@@ -21,7 +21,8 @@ namespace CityInfo.API.Controllers
         }
 
         [HttpGet("{pointofinterestid}")]
-        public ActionResult<PointOfInterestDto> GetPointOfInterest(int cityId , int pointOfInterestId)
+        public ActionResult<PointOfInterestDto> GetPointOfInterest(
+            int cityId , int pointOfInterestId)
         {
             var city = CityDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
 
@@ -30,7 +31,9 @@ namespace CityInfo.API.Controllers
                 return NotFound();
             }
 
-            var pointOfInterest = city.PointsOfInterest.FirstOrDefault(c => c.Id == pointOfInterestId);
+            //find point of interest
+            var pointOfInterest = city.PointsOfInterest
+                .FirstOrDefault(c => c.Id == pointOfInterestId);
 
             if (pointOfInterest == null)
             {
