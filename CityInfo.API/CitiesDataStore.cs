@@ -2,13 +2,13 @@
 
 namespace CityInfo.API
 {
-    public class CityDataStore
+    public class CitiesDataStore
     {
         public List<CityDto> Cities { get; set; }
 
-        public static CityDataStore Current { get;  } = new CityDataStore();
+        public static CitiesDataStore Current { get;  } = new CitiesDataStore();
 
-        public CityDataStore() 
+        public CitiesDataStore() 
         {
             Cities = new List<CityDto>()
             {
@@ -50,7 +50,6 @@ namespace CityInfo.API
                             Description = "The most visited urban park in the United States." },
                     }
                 }, new CityDto()
-
                 {
                     Id = 3,
                     Name = "Nakuru",
