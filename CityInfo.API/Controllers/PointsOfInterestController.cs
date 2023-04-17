@@ -20,7 +20,7 @@ namespace CityInfo.API.Controllers
         {
             try
             {
-                throw new Exception("Exception Sample.");
+                //throw new Exception("Exception Sample.");
 
             var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
 
