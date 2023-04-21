@@ -83,7 +83,7 @@ namespace CityInfo.API
                         {
                             Id = 8,
                             Name = "Uasin Gishu Plateau.",
-                            Description = "west of the Great Rift Valley (in the East African Rift System)." },
+                            Description = "west of the Great Rift Valley (in the East African Rift System." },
                     }
                 }
             };
