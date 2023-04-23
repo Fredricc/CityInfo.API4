@@ -66,38 +66,38 @@ namespace CityInfo.API.Controllers
            return (_mapper.Map<PointOfInterestDto>( pointOfInterest));
         }
 
-        //[HttpPost]
-        //public ActionResult<PointOfInterestDto> CreatePointOfInterest(
-        //           int cityId,
-        //           PointOfInterestForCreationDto pointOfInterest)
-        //{
-        //    var city = _citiesDataStore.Cities.FirstOrDefault(c => c.Id == cityId);
-        //    if (city == null)
-        //    {
-        //        return NotFound();
-        //    }
+        [HttpPost]
+        public ActionResult<PointOfInterestDto> CreatePointOfInterest(
+                   int cityId,
+                   PointOfInterestForCreationDto pointOfInterest)
+        {
+            var city = _citiesDataStore.Cities.FirstOrDefault(c => c.Id == cityId);
+            if (city == null)
+            {
+                return NotFound();
+            }
 
-        //    // demo purposes - to be improved
-        //    var maxPointOfInterestId = _citiesDataStore.Cities.SelectMany(
-        //                     c => c.PointsOfInterest).Max(p => p.Id);
+            // demo purposes - to be improved
+            var maxPointOfInterestId = _citiesDataStore.Cities.SelectMany(
+                             c => c.PointsOfInterest).Max(p => p.Id);
 
-        //    var finalPointOfInterest = new PointOfInterestDto()
-        //    {
-        //        Id = ++maxPointOfInterestId,
-        //        Name = pointOfInterest.Name,
-        //        Description = pointOfInterest.Description
-        //    };
+            var finalPointOfInterest = new PointOfInterestDto()
+            {
+                Id = ++maxPointOfInterestId,
+                Name = pointOfInterest.Name,
+                Description = pointOfInterest.Description
+            };
 
-        //    city.PointsOfInterest.Add(finalPointOfInterest);
+            city.PointsOfInterest.Add(finalPointOfInterest);
 
-        //    return CreatedAtRoute("GetPointOfInterest",
-        //         new
-        //         {
-        //             cityId = cityId,
-        //             pointOfInterestId = finalPointOfInterest.Id
-        //         },
-        //         finalPointOfInterest);
-        //}
+            return CreatedAtRoute("GetPointOfInterest",
+                 new
+                 {
+                     cityId = cityId,
+                     pointOfInterestId = finalPointOfInterest.Id
+                 },
+                 finalPointOfInterest);
+        }
 
         //[HttpPut("{pointofinterestid}")]
         //public ActionResult UpdatePointOfInterest(int cityId, int pointOfInterestId,
@@ -192,5 +192,5 @@ namespace CityInfo.API.Controllers
         //        $"point of interest {pointOfInterestFromStore.Name} with Id {pointOfInterestFromStore.Id} was deleted. ");
         //    return NoContent() ;
         //}
-        }
+    }
 }
