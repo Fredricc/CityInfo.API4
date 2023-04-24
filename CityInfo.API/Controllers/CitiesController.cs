@@ -11,10 +11,10 @@ namespace CityInfo.API.Controllers
 
     {
 
-        private readonly ICityInfoRespository _cityInfoRespository;
+        private readonly ICityInfoRepository _cityInfoRespository;
         private readonly IMapper _mapper;
 
-        public CitiesController(ICityInfoRespository cityInfoRespository,
+        public CitiesController(ICityInfoRepository cityInfoRespository,
             IMapper mapper)
         {
             this._cityInfoRespository = cityInfoRespository ?? throw new ArgumentNullException(nameof(cityInfoRespository));
@@ -22,9 +22,9 @@ namespace CityInfo.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CityWithoutPointsOfInterestDto>>> GetCities()
+        public async Task<ActionResult<IEnumerable<CityWithoutPointsOfInterestDto>>> GetCities(string? name)
         {
-            var cityEntities = await _cityInfoRespository.GetCitiesAsync();
+            var cityEntities = await _cityInfoRespository.GetCitiesAsync(name);
 
             return Ok(_mapper.Map<IEnumerable<CityWithoutPointsOfInterestDto>>(cityEntities));
         }

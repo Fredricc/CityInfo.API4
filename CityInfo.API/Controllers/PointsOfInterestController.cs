@@ -12,11 +12,11 @@ namespace CityInfo.API.Controllers
     {
         private readonly ILogger<PointsOfInterestController>_logger;
         private readonly IMailService _mailService;
-        private readonly ICityInfoRespository _cityInfoRespository;
+        private readonly ICityInfoRepository _cityInfoRespository;
         private readonly IMapper _mapper;
 
         public PointsOfInterestController(ILogger<PointsOfInterestController> logger, IMailService mailService, 
-            ICityInfoRespository cityInfoRespository,
+            ICityInfoRepository cityInfoRespository,
             IMapper mapper) 
         {
             this._logger = logger ?? 
@@ -32,7 +32,7 @@ namespace CityInfo.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<PointOfInterestDto>>> GetPointsOfInterest(int  cityId)
         {
-            if (!await _cityInfoRespository.CityExistAsync(cityId))
+            if (!await _cityInfoRespository.CityExistsAsync(cityId))
             {
                 _logger.LogInformation(
                     $"City with id {cityId} wasn't found when accessing points of interest.");
@@ -50,7 +50,7 @@ namespace CityInfo.API.Controllers
         public async Task<ActionResult<PointOfInterestDto>> GetPointOfInterest(
             int cityId , int pointOfInterestId)
         {
-           if(!await _cityInfoRespository.CityExistAsync(cityId))
+           if(!await _cityInfoRespository.CityExistsAsync(cityId))
             {
                 return NotFound();
             }
@@ -71,7 +71,7 @@ namespace CityInfo.API.Controllers
                    int cityId,
                    PointOfInterestForCreationDto pointOfInterest)
         {
-            if (!await _cityInfoRespository.CityExistAsync(cityId))
+            if (!await _cityInfoRespository.CityExistsAsync(cityId))
             {
                 return NotFound();
             }
@@ -99,7 +99,7 @@ namespace CityInfo.API.Controllers
         public async Task<ActionResult> UpdatePointOfInterest(int cityId, int pointOfInterestId,
                    PointOfInterestForUpdateDto pointOfInterest)
         {
-            if (!await _cityInfoRespository.CityExistAsync(cityId))
+            if (!await _cityInfoRespository.CityExistsAsync(cityId))
             {
                 return NotFound();
             }
@@ -125,7 +125,7 @@ namespace CityInfo.API.Controllers
             int cityId, int pointOfInterestId,
             JsonPatchDocument<PointOfInterestForUpdateDto> patchDocument)
         {
-            if (!await _cityInfoRespository.CityExistAsync(cityId))
+            if (!await _cityInfoRespository.CityExistsAsync(cityId))
             {
                 return NotFound();
             }
@@ -164,7 +164,7 @@ namespace CityInfo.API.Controllers
         [HttpDelete("{pointofinterestid}")]
         public async Task<ActionResult> DeletePointOfInterest(int cityId, int pointOfInterestId)
         {
-            if (!await _cityInfoRespository.CityExistAsync(cityId))
+            if (!await _cityInfoRespository.CityExistsAsync(cityId))
             {
                 return NotFound();
             }
