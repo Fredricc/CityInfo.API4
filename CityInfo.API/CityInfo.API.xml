@@ -9,7 +9,7 @@
             Gets a list of cities and also uses pagination
             </summary>
             <param name="name">Filters a name of a city</param>
-            <param name="searchQuery">Searches the name of the city of description </param>
+            <param name="searchQuery">Searches the name of the city or description </param>
             <param name="pageNumber">Sets the page number</param>
             <param name="pageSize">Sets the items listed in a single page</param>
             <returns>An IActionResult</returns>
@@ -21,6 +21,7 @@
             <param name="id">The id of the city to get</param>
             <param name="includePointsOfInterest">Whether or not include the points of interest </param>
             <returns>An IActionResult</returns>
+            <response code="200">Return the requested city</response>
         </member>
         <member name="T:CityInfo.API.Migrations.CityIn4DBInitialMigration">
             <inheritdoc />

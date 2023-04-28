@@ -33,7 +33,7 @@ namespace CityInfo.API.Controllers
         /// Gets a list of cities and also uses pagination
         /// </summary>
         /// <param name="name">Filters a name of a city</param>
-        /// <param name="searchQuery">Searches the name of the city of description </param>
+        /// <param name="searchQuery">Searches the name of the city or description </param>
         /// <param name="pageNumber">Sets the page number</param>
         /// <param name="pageSize">Sets the items listed in a single page</param>
         /// <returns>An IActionResult</returns>
@@ -60,7 +60,12 @@ namespace CityInfo.API.Controllers
         /// <param name="id">The id of the city to get</param>
         /// <param name="includePointsOfInterest">Whether or not include the points of interest </param>
         /// <returns>An IActionResult</returns>
+        /// <response code="200">Return the requested city</response>
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         public async Task<IActionResult> GetCity(int id, bool includePointsOfInterest = false)
         {
             var city = await _cityInfoRespository.GetCityAsync(id, includePointsOfInterest);
